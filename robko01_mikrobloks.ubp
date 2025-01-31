@@ -3,102 +3,102 @@ author unknown
 version 1 0 
 description ''
 
-  spec ' ' 'impulse' 'drive _ _ _' 'auto auto auto' 0 10 1
+  spec ' ' 'impulse' 'drive _ _ _' 'auto auto auto' 0 1 200
 
 to impulse axis delay steps {
   if (axis == 0) {
-    digitalWriteOp 2 true
+    digitalWriteOp 2 false
     if (steps > 0) {
       digitalWriteOp 4 true
     }
     if (steps <= 0) {
       digitalWriteOp 4 false
     }
-    repeat steps {
+    repeat (absoluteValue steps) {
       digitalWriteOp 0 false
-      waitMillis delay
+      waitMillis (absoluteValue delay)
       digitalWriteOp 0 true
-      waitMillis delay
+      waitMillis (absoluteValue delay)
     }
     digitalWriteOp 2 true
   }
   if (axis == 1) {
-    digitalWriteOp 2 true
+    digitalWriteOp 2 false
     if (steps > 0) {
       digitalWriteOp 17 true
     }
     if (steps <= 0) {
       digitalWriteOp 17 false
     }
-    repeat steps {
+    repeat (absoluteValue steps) {
       digitalWriteOp 16 false
-      waitMillis delay
+      waitMillis (absoluteValue delay)
       digitalWriteOp 16 true
-      waitMillis delay
+      waitMillis (absoluteValue delay)
     }
     digitalWriteOp 2 true
   }
   if (axis == 2) {
-    digitalWriteOp 2 true
+    digitalWriteOp 2 false
     if (steps > 0) {
       digitalWriteOp 12 true
     }
     if (steps <= 0) {
       digitalWriteOp 12 false
     }
-    repeat steps {
+    repeat (absoluteValue steps) {
       digitalWriteOp 13 false
-      waitMillis delay
+      waitMillis (absoluteValue delay)
       digitalWriteOp 13 true
-      waitMillis delay
+      waitMillis (absoluteValue delay)
     }
     digitalWriteOp 2 true
   }
   if (axis == 3) {
-    digitalWriteOp 2 true
+    digitalWriteOp 2 false
     if (steps > 0) {
       digitalWriteOp 27 true
     }
     if (steps <= 0) {
       digitalWriteOp 27 false
     }
-    repeat steps {
+    repeat (absoluteValue steps) {
       digitalWriteOp 14 false
-      waitMillis delay
+      waitMillis (absoluteValue delay)
       digitalWriteOp 14 true
-      waitMillis delay
+      waitMillis (absoluteValue delay)
     }
     digitalWriteOp 2 true
   }
   if (axis == 4) {
-    digitalWriteOp 2 true
+    digitalWriteOp 2 false
     if (steps > 0) {
       digitalWriteOp 25 true
     }
     if (steps <= 0) {
       digitalWriteOp 25 false
     }
-    repeat steps {
+    repeat (absoluteValue steps) {
       digitalWriteOp 26 false
-      waitMillis delay
+      waitMillis (absoluteValue delay)
       digitalWriteOp 26 true
-      waitMillis delay
+      waitMillis (absoluteValue delay)
     }
     digitalWriteOp 2 true
   }
   if (axis == 5) {
-    digitalWriteOp 2 true
+    digitalWriteOp 2 false
     if (steps > 0) {
       digitalWriteOp 32 true
     }
     if (steps <= 0) {
       digitalWriteOp 32 false
     }
-    repeat steps {
+    repeat (absoluteValue steps) {
       digitalWriteOp 33 false
-      waitMillis delay
+      waitMillis (absoluteValue delay)
       digitalWriteOp 33 true
-      waitMillis delay
+      waitMillis (absoluteValue delay)
     }
     digitalWriteOp 2 true
   }

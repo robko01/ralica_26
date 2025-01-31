@@ -4,17 +4,19 @@ version 1 0
 description ''
 
   spec ' ' 'impulse' 'drive _ _ _' 'auto auto auto' 0 1 200
-  spec ' ' 'doremifa_vvf' 'doremifa_vvvf'
-  spec ' ' 'hbd' 'melody _ _' 'auto auto' 60 0
+  spec ' ' 'doremifa_vvf' 'doremifa_vvf'
+  spec ' ' 'hbd' 'hbd _ _' 'auto auto' 60 0
   spec ' ' 'the_connection' 'the_connection'
 
 to doremifa_vvf {
   digitalWriteOp 2 false
   'attach buzzer to pin' 0
-  for i ('[data:range]' 261 392 15) {
-    'play frequency' i 200
-  }
-  'play frequency' 392 3000
+  'play tone' 'nt;c' 3 1000
+  'play tone' 'nt;d' 3 300
+  'play tone' 'nt;e' 3 300
+  'play tone' 'nt;f' 3 300
+  'play tone' 'nt;g' 3 300
+  'play tone' 'nt;g' 3 3000
   digitalWriteOp 2 true
 }
 
@@ -200,32 +202,160 @@ to the_connection {
   digitalWriteOp 2 true
 }
 
-script 283 50 {
-impulse 0 2 -50
+script 1109 50 {
+sendBroadcast 'R_CW'
+comment 'R CW'
+}
+
+script 1314 51 {
+impulse 5 5 50
+comment 'Open Gripper'
+}
+
+script 898 56 {
+sendBroadcast 'P_UP'
+comment 'P UP'
+}
+
+script 478 58 {
+impulse 1 5 -50
+comment 'Shoulder UP'
+}
+
+script 688 58 {
+sendBroadcast 'E_UP'
+comment 'Elbow UP'
+}
+
+script 281 61 {
+impulse 0 5 -50
 comment 'Basee CW'
 }
 
-script 52 54 {
+script 50 65 {
 digitalWriteOp 2 true
 comment 'Power OFF Drrivers'
 }
 
-script 504 56 {
-the_connection
+script 1311 131 {
+impulse 5 5 -50
+comment 'Close Gripper'
 }
 
-script 502 121 {
-hbd 60 0
+script 1112 134 {
+sendBroadcast 'R_CCW'
+comment 'R CCW'
 }
 
-script 284 127 {
-impulse 0 2 50
+script 282 138 {
+impulse 0 5 50
 comment 'Base CCW'
 }
 
-script 513 186 {
-doremifa_vvf
-comment 'https://www.youtube.com/watch?v=b4AMDiYV4PU'
+script 685 138 {
+sendBroadcast 'E_DN'
+comment 'Elbow DN'
+}
+
+script 479 140 {
+impulse 1 5 50
+comment 'Shoulder DN'
+}
+
+script 896 141 {
+sendBroadcast 'P_DN'
+comment 'P UP'
+}
+
+script 1117 215 {
+whenBroadcastReceived 'R_CW'
+impulse 3 5 50
+}
+
+script 279 223 {
+whenStarted
+sendBroadcast 'go!'
+}
+
+script 694 224 {
+whenBroadcastReceived 'E_UP'
+impulse 2 5 50
+}
+
+script 899 224 {
+whenBroadcastReceived 'P_UP'
+impulse 3 5 -50
+}
+
+script 471 326 {
+whenBroadcastReceived 'go!'
+}
+
+script 1109 326 {
+whenBroadcastReceived 'R_CW'
+impulse 4 5 50
+}
+
+script 274 328 {
+whenBroadcastReceived 'go!'
+impulse 1 5 100
+impulse 1 5 -100
+impulse 2 5 100
+impulse 2 5 -100
+impulse 2 5 -100
+impulse 2 5 100
+impulse 1 5 -100
+impulse 1 5 100
+waitMillis 500
+}
+
+script 65 331 {
+whenBroadcastReceived 'go!'
+impulse 0 5 200
+impulse 0 5 -200
+impulse 0 5 -200
+impulse 0 5 200
+waitMillis 500
+}
+
+script 896 332 {
+whenBroadcastReceived 'P_UP'
+impulse 4 5 50
+}
+
+script 691 339 {
+whenBroadcastReceived 'E_UP'
+impulse 5 5 -50
+}
+
+script 1115 443 {
+whenBroadcastReceived 'R_CCW'
+impulse 3 5 -50
+}
+
+script 906 452 {
+whenBroadcastReceived 'P_DN'
+impulse 3 5 50
+}
+
+script 689 454 {
+whenBroadcastReceived 'E_DN'
+impulse 2 5 -50
+}
+
+script 1112 555 {
+whenBroadcastReceived 'R_CCW'
+impulse 4 5 -50
+}
+
+script 900 561 {
+whenBroadcastReceived 'P_DN'
+impulse 4 5 -50
+}
+
+script 689 566 {
+whenBroadcastReceived 'E_DN'
+impulse 5 5 50
 }
 
 
