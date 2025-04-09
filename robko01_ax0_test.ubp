@@ -11,10 +11,15 @@ description ''
 to doremifa_vvf {
   digitalWriteOp 2 false
   'attach buzzer to pin' 0
-  for i ('[data:range]' 261 392 15) {
-    'play frequency' i 200
-  }
-  'play frequency' 392 3000
+  'play tone' 'nt;f' 3 300
+  'play tone' 'nt;g' 3 300
+  'play tone' 'nt;a' 3 300
+  'play tone' 'nt;a#' 3 300
+  'play tone' 'nt;c' 4 300
+  'play tone' 'nt;d' 4 300
+  'play tone' 'nt;d#' 4 300
+  'play tone' 'nt;f' 4 300
+  'play tone' 'nt;g' 4 3000
   digitalWriteOp 2 true
 }
 
@@ -223,9 +228,21 @@ impulse 0 2 50
 comment 'Base CCW'
 }
 
-script 513 186 {
+script 502 199 {
 doremifa_vvf
 comment 'https://www.youtube.com/watch?v=b4AMDiYV4PU'
+}
+
+script 57 235 {
+comment '1..2..3..4
+
+1St/mS -> v -> Velocity
+*
+3000St -> S -> Space
+=
+3000mS -> t -> Time
+
+S=v*t'
 }
 
 
