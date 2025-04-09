@@ -1,7 +1,7 @@
 module main
-author unknown
+author Orlin Dimitrov
 version 1 0 
-description ''
+description 'Demo framework for controlling the robot robko01'
 variables BaseSteps SholuderSteps ElbowSteps PSteps RSteps GripperSteps 
 
   spec ' ' 'abspos' 'APosition _ _ _' 'auto auto auto' 0 1 200
