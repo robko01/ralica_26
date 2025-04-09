@@ -1,7 +1,7 @@
 module main
-author unknown
+author Orlin Dimitrov
 version 1 0 
-description ''
+description 'Demo framework for controlling the robot robko01'
 variables BaseSteps SholuderSteps ElbowSteps PSteps RSteps GripperSteps 
 
   spec ' ' 'abspos' 'APosition _ _ _' 'auto auto auto' 0 1 200
@@ -9,6 +9,32 @@ variables BaseSteps SholuderSteps ElbowSteps PSteps RSteps GripperSteps
   spec ' ' 'doremifa_vvf' 'doremifa_vvf'
   spec ' ' 'hbd' 'hbd _ _' 'auto auto' 60 0
   spec ' ' 'the_connection' 'the_connection'
+  spec ' ' 'P2P' 'P2P _ _ _ _ _ _' 'auto auto auto auto auto auto' 100 0 0 0 0 0
+  spec ' ' 'GotoAPos' 'GotoAPos _ _ _ _ _ _ _' 'auto auto auto auto auto auto auto' 0 0 0 0 0 0 7
+
+to GotoAPos base shoulder elbow p r gripper velocity {
+  abspos 0 velocity (9 * base)
+  abspos 1 velocity (5 * shoulder)
+  abspos 2 velocity (2 * elbow)
+  abspos 3 velocity (2 * p)
+  abspos 4 velocity (8 * r)
+  abspos 5 velocity (9 * gripper)
+  comment 'Goto absolute position'
+}
+
+to P2P velocity base shoulder elbow p r {
+  local 'current_base_tick' 0
+  local 'current_shoulder_tick' 0
+  local 'stop_condition' 0
+  local 'max_steps' (maximum (absoluteValue base) (absoluteValue shoulder) (absoluteValue elbow) (absoluteValue p) (absoluteValue r))
+  local 'time_steps' (max_steps / velocity)
+  local 'base_ticks' (((absoluteValue base) / time_steps) / 1000)
+  local 'shoulder_ticks' (((absoluteValue shoulder) / time_steps) / 1000)
+  local 'elbow_tick' (((absoluteValue elbow) / time_steps) / 1000)
+  local 'p_ticks' (((absoluteValue p) / time_steps) / 1000)
+  local 'r_ticks' (((absoluteValue r) / time_steps) / 1000)
+  sayIt time_steps
+}
 
 to abspos axis delay steps {
   if (and (axis == 0) (BaseSteps != steps)) {
@@ -345,72 +371,97 @@ to the_connection {
   digitalWriteOp 2 true
 }
 
-script 247 65 {
-abspos 1 5 -200
-comment 'Shoulder UP'
-}
-
-script 1033 66 {
-abspos 5 5 50
-comment 'Open Gripper'
-}
-
-script 50 68 {
-abspos 0 5 -500
-comment 'Basee CW'
-}
-
-script 446 68 {
-abspos 2 5 50
-comment 'Elbow UP'
-}
-
-script 838 68 {
-abspos 4 5 50
-comment 'R CW'
-}
-
-script 638 69 {
-abspos 3 5 -50
-comment 'P UP'
-}
-
-script 1031 142 {
-abspos 5 5 -50
-comment 'Close Gripper'
-}
-
-script 51 145 {
-abspos 0 5 500
-comment 'Base CCW'
-}
-
-script 832 145 {
-abspos 4 5 -50
-comment 'R CCW'
-}
-
-script 639 146 {
-abspos 3 5 50
-comment 'P UP'
-}
-
-script 248 147 {
-abspos 1 5 200
-comment 'Shoulder DN'
-}
-
-script 445 148 {
-abspos 2 5 -50
-comment 'Elbow DN'
-}
-
-script 85 324 {
+script 79 50 {
 digitalWriteOp 2 true
 comment 'Power OFF Drrivers'
 }
 
-script 440 335 {
+script 272 160 {
+abspos 1 5 -200
+comment 'Shoulder UP'
+}
+
+script 1058 161 {
+abspos 5 5 50
+comment 'Open Gripper'
+}
+
+script 75 163 {
+abspos 0 5 -500
+comment 'Basee CW'
+}
+
+script 471 163 {
+abspos 2 5 50
+comment 'Elbow UP'
+}
+
+script 863 163 {
+abspos 4 5 50
+comment 'R CW'
+}
+
+script 663 164 {
+abspos 3 5 -50
+comment 'P UP'
+}
+
+script 1056 237 {
+abspos 5 5 -50
+comment 'Close Gripper'
+}
+
+script 76 240 {
+abspos 0 5 500
+comment 'Base CCW'
+}
+
+script 857 240 {
+abspos 4 5 -50
+comment 'R CCW'
+}
+
+script 664 241 {
+abspos 3 5 50
+comment 'P UP'
+}
+
+script 273 242 {
+abspos 1 5 200
+comment 'Shoulder DN'
+}
+
+script 470 243 {
+abspos 2 5 -50
+comment 'Elbow DN'
+}
+
+script 71 350 {
+GotoAPos 0 0 0 0 0 0 7
+comment 'Goto HOME'
+}
+
+script 553 358 {
+repeat 5 {
+  GotoAPos (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -10 50) 7
+  comment 'Gotoi random point'
+}
+GotoAPos 0 0 0 0 0 0 7
+comment 'Goto HOME'
+}
+
+script 77 461 {
+GotoAPos 45 45 -45 45 45 0 7
+comment 'Goto Specific point'
+}
+
+script 78 583 {
+GotoAPos 0 0 0 0 0 -30 7
+GotoAPos 0 120 0 90 0 -30 7
+comment 'Goto box'
+}
+
+script 905 663 {
 comment '[ 450,  600, -400,  200, -200,  400], \
 [   0,    0,    0,  110,  110,    0], \
 [   0,  100,    0,    0,    0,    0], \
@@ -424,14 +475,9 @@ comment '[ 450,  600, -400,  200, -200,  400], \
 [ 450, -600,  400, -220,  180, -400]'
 }
 
-script 85 434 {
-abspos 0 5 0
-abspos 1 5 0
-abspos 2 5 0
-abspos 3 5 0
-abspos 4 5 0
-abspos 5 5 0
-comment 'Goto HOME'
+script 82 741 {
+GotoAPos (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -10 50) 7
+comment 'Gotoi random point'
 }
 
 
