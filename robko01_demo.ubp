@@ -371,78 +371,78 @@ to the_connection {
   digitalWriteOp 2 true
 }
 
-script 53 50 {
+script 56 50 {
 whenStarted
 digitalWriteOp 2 true
 comment 'Power OFF Drrivers'
 }
 
-script 251 188 {
-abspos 1 5 -200
-comment 'Shoulder UP'
-}
-
-script 1037 189 {
-abspos 5 5 50
+script 1089 183 {
+relpos 5 5 100
 comment 'Open Gripper'
 }
 
-script 54 191 {
-abspos 0 5 -500
+script 54 183 {
+relpos 0 5 -50
 comment 'Basee CW'
 }
 
-script 450 191 {
-abspos 2 5 50
+script 474 184 {
+relpos 2 5 50
 comment 'Elbow UP'
 }
 
-script 842 191 {
-abspos 4 5 50
+script 881 184 {
+relpos 4 5 10
 comment 'R CW'
 }
 
-script 642 192 {
-abspos 3 5 -50
+script 681 185 {
+relpos 3 5 10
 comment 'P UP'
 }
 
-script 1035 265 {
-abspos 5 5 -50
-comment 'Close Gripper'
+script 266 186 {
+relpos 1 5 -25
+comment 'Shoulder UP'
 }
 
-script 55 268 {
-abspos 0 5 500
-comment 'Base CCW'
-}
-
-script 836 268 {
-abspos 4 5 -50
-comment 'R CCW'
-}
-
-script 643 269 {
-abspos 3 5 50
-comment 'P UP'
-}
-
-script 252 270 {
-abspos 1 5 200
+script 269 259 {
+relpos 1 5 50
 comment 'Shoulder DN'
 }
 
-script 449 271 {
-abspos 2 5 -50
+script 1092 259 {
+relpos 5 5 -100
+comment 'Close Gripper'
+}
+
+script 51 260 {
+relpos 0 5 50
+comment 'Base CCW'
+}
+
+script 682 262 {
+relpos 3 5 -10
+comment 'P UP'
+}
+
+script 473 264 {
+relpos 2 5 -50
 comment 'Elbow DN'
 }
 
-script 50 378 {
+script 884 264 {
+relpos 4 5 -10
+comment 'R CCW'
+}
+
+script 53 378 {
 GotoAPos 0 0 0 0 0 0 7
 comment 'Goto HOME'
 }
 
-script 532 386 {
+script 485 394 {
 repeat 5 {
   GotoAPos (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -10 50) 7
   comment 'Gotoi random point'
@@ -451,35 +451,55 @@ GotoAPos 0 0 0 0 0 0 7
 comment 'Goto HOME'
 }
 
-script 1064 411 {
+script 1067 411 {
 GotoAPos 0 0 0 0 0 0 5
+sayIt 'Going over the cube.'
 GotoAPos 45 -140 150 0 0 0 5
-GotoAPos 45 -140 150 90 10 0 7
-GotoAPos 45 -165 150 90 10 0 7
+sayIt 'Moving slowli the wrist.'
+GotoAPos 45 -140 150 90 10 0 5
+sayIt 'Going to grasp the cube.'
+GotoAPos 45 -165 150 90 10 0 5
+sayIt 'Closing the gripper.'
 GotoAPos 45 -165 150 90 10 -25 5
+sayIt 'Lifting the cube.'
 GotoAPos 45 -140 150 90 10 -25 20
+sayIt 'Move the cube to next postion.'
 GotoAPos -45 -140 150 90 10 -25 5
+sayIt 'Align the cube .'
 GotoAPos -45 -140 150 90 -10 -25 7
+sayIt 'Slowli puting it back down.'
 GotoAPos -45 -165 150 90 -10 -25 7
+sayIt 'Release the cube.'
 GotoAPos -45 -165 150 90 -10 0 5
-GotoAPos -45 -140 150 0 0 0 20
+sayIt 'Home the gripper.'
+GotoAPos -45 -140 150 0 0 0 7
+sayIt 'Get back.'
 GotoAPos 0 -70 150 0 0 0 7
 GotoAPos 0 0 0 0 0 0 5
+sayIt 'Job done.'
 comment 'Cube animation'
 }
 
-script 56 489 {
-GotoAPos 45 45 -45 45 45 0 7
+script 59 489 {
+GotoAPos 20 20 -20 20 20 0 7
 comment 'Goto Specific point'
 }
 
-script 57 611 {
+script 60 611 {
 GotoAPos 0 0 0 0 0 -30 7
 GotoAPos 0 120 0 90 0 -30 7
 comment 'Goto box'
 }
 
-script 61 769 {
+script 560 691 {
+repeatUntil (not false) {
+  GotoAPos (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -10 50) 4
+}
+GotoAPos 0 0 0 0 0 0 7
+comment 'Goto HOME'
+}
+
+script 64 769 {
 GotoAPos (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -10 50) 7
 comment 'Gotoi random point'
 }
