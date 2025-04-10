@@ -1,5 +1,5 @@
 module main
-author Orlin Dimitrov
+author Orlin
 version 1 0 
 description 'Demo framework for controlling the robot robko01'
 variables BaseSteps SholuderSteps ElbowSteps PSteps RSteps GripperSteps 
@@ -371,77 +371,78 @@ to the_connection {
   digitalWriteOp 2 true
 }
 
-script 79 50 {
+script 53 50 {
+whenStarted
 digitalWriteOp 2 true
 comment 'Power OFF Drrivers'
 }
 
-script 272 160 {
+script 251 188 {
 abspos 1 5 -200
 comment 'Shoulder UP'
 }
 
-script 1058 161 {
+script 1037 189 {
 abspos 5 5 50
 comment 'Open Gripper'
 }
 
-script 75 163 {
+script 54 191 {
 abspos 0 5 -500
 comment 'Basee CW'
 }
 
-script 471 163 {
+script 450 191 {
 abspos 2 5 50
 comment 'Elbow UP'
 }
 
-script 863 163 {
+script 842 191 {
 abspos 4 5 50
 comment 'R CW'
 }
 
-script 663 164 {
+script 642 192 {
 abspos 3 5 -50
 comment 'P UP'
 }
 
-script 1056 237 {
+script 1035 265 {
 abspos 5 5 -50
 comment 'Close Gripper'
 }
 
-script 76 240 {
+script 55 268 {
 abspos 0 5 500
 comment 'Base CCW'
 }
 
-script 857 240 {
+script 836 268 {
 abspos 4 5 -50
 comment 'R CCW'
 }
 
-script 664 241 {
+script 643 269 {
 abspos 3 5 50
 comment 'P UP'
 }
 
-script 273 242 {
+script 252 270 {
 abspos 1 5 200
 comment 'Shoulder DN'
 }
 
-script 470 243 {
+script 449 271 {
 abspos 2 5 -50
 comment 'Elbow DN'
 }
 
-script 71 350 {
+script 50 378 {
 GotoAPos 0 0 0 0 0 0 7
 comment 'Goto HOME'
 }
 
-script 553 358 {
+script 532 386 {
 repeat 5 {
   GotoAPos (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -10 50) 7
   comment 'Gotoi random point'
@@ -450,32 +451,35 @@ GotoAPos 0 0 0 0 0 0 7
 comment 'Goto HOME'
 }
 
-script 77 461 {
+script 1064 411 {
+GotoAPos 0 0 0 0 0 0 5
+GotoAPos 45 -140 150 0 0 0 5
+GotoAPos 45 -140 150 90 10 0 7
+GotoAPos 45 -165 150 90 10 0 7
+GotoAPos 45 -165 150 90 10 -25 5
+GotoAPos 45 -140 150 90 10 -25 20
+GotoAPos -45 -140 150 90 10 -25 5
+GotoAPos -45 -140 150 90 -10 -25 7
+GotoAPos -45 -165 150 90 -10 -25 7
+GotoAPos -45 -165 150 90 -10 0 5
+GotoAPos -45 -140 150 0 0 0 20
+GotoAPos 0 -70 150 0 0 0 7
+GotoAPos 0 0 0 0 0 0 5
+comment 'Cube animation'
+}
+
+script 56 489 {
 GotoAPos 45 45 -45 45 45 0 7
 comment 'Goto Specific point'
 }
 
-script 78 583 {
+script 57 611 {
 GotoAPos 0 0 0 0 0 -30 7
 GotoAPos 0 120 0 90 0 -30 7
 comment 'Goto box'
 }
 
-script 905 663 {
-comment '[ 450,  600, -400,  200, -200,  400], \
-[   0,    0,    0,  110,  110,    0], \
-[   0,  100,    0,    0,    0,    0], \
-[   0,    0,    0,    0,    0, -100], \
-[   0, -100,    0,    0,    0,    0], \
-[-900,    0,    0, -200, -200,    0], \
-[   0,  100,    0,    0,    0,    0], \
-[   0,    0,    0,    0,    0,  100], \
-[   0, -100,    0,    0,    0,    0], \
-[   0,    0,    0,  110,  110,    0], \
-[ 450, -600,  400, -220,  180, -400]'
-}
-
-script 82 741 {
+script 61 769 {
 GotoAPos (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -20 20) (random -10 50) 7
 comment 'Gotoi random point'
 }
