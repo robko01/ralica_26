@@ -73,6 +73,6 @@ Then click pair.
 
 ![image info](./images/11.png)
 
- 5. Край
+ 5. End
 
  - [Back](./README.md)
