@@ -2,5 +2,5 @@
 
 ## Regional
 
- - [Бътлгарски](./bg-BG.md)
+ - [Български](./bg-BG.md)
  - [English](./en-EN.md)
